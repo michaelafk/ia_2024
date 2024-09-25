@@ -1,5 +1,5 @@
 import sys
-sys.path.append('C:\\Users\\miquel\\Development\\ia2023')
+sys.path.append('C:/Users/michael/IA_2024')
 
 
 import abc
