@@ -1,8 +1,3 @@
-import sys
-sys.path.append('C:/Users/michael/IA_2024')
-
-sys.path.append('C:/Users/kirky/IA_2024')
-
 import abc
 
 from base import entorn
