@@ -51,7 +51,13 @@ class AspiradorTaula(Aspirador):
 
 class AspiradorReflex(Aspirador):
     def actua(self, percepcio: dict) -> entorn.Accio:
-        """ TODO """
+        if not percepcio["Net"]:
+            AccionsAspirador.ASPIRA
+        else:
+            if percepcio["Loc"] == 0:
+                AccionsAspirador.DRETA
+            else:
+                AccionsAspirador.ESQUERRA
 
 
 class AspiradorMemoria(Aspirador):
