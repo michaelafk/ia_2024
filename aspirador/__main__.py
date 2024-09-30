@@ -1,5 +1,5 @@
 import sys
-sys.path.append('C:/Users/michael/IA_2024')
+sys.path.append('C:/Users/kirky/IA_2024')
 from aspirador import joc_gui, agent
 
 def main():
