@@ -52,15 +52,26 @@ class AspiradorTaula(Aspirador):
 class AspiradorReflex(Aspirador):
     def actua(self, percepcio: dict) -> entorn.Accio:
         if not percepcio["Net"]:
-            AccionsAspirador.ASPIRA
+            return AccionsAspirador.ASPIRA
         else:
             if percepcio["Loc"] == 0:
-                AccionsAspirador.DRETA
+                return AccionsAspirador.DRETA
             else:
-                AccionsAspirador.ESQUERRA
+                return AccionsAspirador.ESQUERRA
+            
 
 
 class AspiradorMemoria(Aspirador):
     def actua(self, percepcio: dict) -> entorn.Accio:
-        """ TODO """
+        mem_actual = (percepcio["Loc"],percepcio["Net"])
+        if mem_actual == self.get_memoria(1) and percepcio["Net"]:
+            return AccionsAspirador.ATURA
+        Aspirador.set_memoria(self,mem_actual)
+        if not percepcio["Net"]:
+            return AccionsAspirador.ASPIRA
+        else:
+            if percepcio["Loc"] == 0:
+                return AccionsAspirador.DRETA
+            else:
+                return AccionsAspirador.ESQUERRA
 
