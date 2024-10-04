@@ -98,7 +98,15 @@ class Estat:
                 estats_generats.append(nou_estat)
 
         return estats_generats
-
+    
     def __str__(self):
         return (f"Llops esq: {self.llops_esq}, Quiques esq: {self.quica_esq} | "
                 f"Llops dreta: {self.llops_dreta}, Quiques dreta: {self.quica_dreta} | Accio {self.cami}")
+        
+    def __lt__(self,other):
+        """Overrides the default implementation"""
+        return (
+                self.llops_esq == other.llops_esq + 1
+                and self.quica_esq == other.quica_esq + 1
+                and self.local_barca == other.local_barca + 1
+        )
