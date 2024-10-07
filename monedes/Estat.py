@@ -91,6 +91,12 @@ def get_cost(self):
 def es_meta(self):
     return (self.orden_monedes.__eq__(" XXXC"))
 
+def __lt__(self,other):
+    """Overrides the default implementation"""
+    return (
+        self.euristica == other.euristica
+    )
+
 def calculate_euristic(self):
     orden_monedes_final = " XXXC"
     lista1 = list(orden_monedes_final)

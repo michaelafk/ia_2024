@@ -22,7 +22,7 @@ class BarcaGreedy(Barca):
         self.__visitats = set()
         exit = False
 
-        self.__per_visitar.put((self.heuristica(estat_inicial),estat_inicial))
+        self.__per_visitar.put((-self.heuristica(estat_inicial),estat_inicial))
         while self.__per_visitar:
             estat_actual = self.__per_visitar.get()[1]
 

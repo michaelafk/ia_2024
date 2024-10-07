@@ -1,5 +1,5 @@
 import sys
-sys.path.append('C:/Users/michael/IA_2024')
+sys.path.append('C:/Users/kirky/IA_2024')
 
 from quiques import agent_amplada, agent_profunditat, agent_informat, joc
 
