@@ -17,6 +17,8 @@ class Agent(joc.Agent):
     def pinta(self, display):
         pass
 
+    def minimax():
+        
     def actua(
         self, percepcio: entorn.Percepcio
     ) -> entorn.Accio | tuple[entorn.Accio, object]:

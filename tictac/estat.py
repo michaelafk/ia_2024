@@ -10,7 +10,11 @@ class Estat:
         self.accions_previes = accions_previes
         self.agent_actual = agent_actual
         self.taulell = []
-
+    def generarfills(self) -> list:
+        succesors = []
+        for i in range(len(self.taulell[0])):
+            for j in range(len(self.taulell[i][0]))
+        
     def es_meta(self) -> bool:
         pos_x, pos_y = self.accions_previes[-1]
 
