@@ -25,7 +25,7 @@ class Accions(enum.Enum):
 
     MOURE -> Pes 1
     BOTAR -> Pes 2
-    BOTAR -> Pes 3
+    POSAR_PARET -> Pes 4
 
     """
     MOURE = 0
@@ -285,7 +285,7 @@ class Laberint(joc.Joc):
                     print(f"L'agent {agent_actual.nom} ha guanyat")
 
             elif accio is Accions.POSAR_PARET:
-                if params not in ("N", "S", "E", "W"):
+                if params not in ("N", "S", "E", "O"):
                     raise ValueError(
                         f"Paràmetre {params} incorrecte per acció POSAR_PARET"
                     )
