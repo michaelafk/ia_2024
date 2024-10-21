@@ -3,6 +3,7 @@ import random
 from practica import joc
 from practica.joc import Accions
 from practica.Estat import Estat
+from practica.Estat import Estat
 
 class Viatger(joc.Viatger):
     def __init__(self, *args, **kwargs):
@@ -10,9 +11,39 @@ class Viatger(joc.Viatger):
         self.per_visitar = None
         self.visitats = None
         self.cami_exit = None
+        self.per_visitar = None
+        self.visitats = None
+        self.cami_exit = None
 
     def pinta(self, display):
         pass
+    
+    def cerca(self,estat_inicial: Estat):
+        self.per_visitar = []
+        self.visitats = set()
+        exit = False
+        
+        self.per_visitar.append(estat_inicial)
+        while self.per_visitar:
+            estat_actual = self.per_visitar.pop(-1)
+            
+            if estat_actual in self.visitats:
+                continue
+            if estat_actual.es_meta():
+                break
+            
+            for fills in estat_actual.generar_fills():
+                self.per_visitar.append(fills)
+            
+            self.visitats.add(estat_actual)
+            
+        if estat_actual.es_meta():
+            self.cami_exit = estat_actual.cami_accions
+            exit = True
+        
+        return exit
+        
+        
     
     def cerca(self,estat_inicial: Estat):
         self.per_visitar = []
