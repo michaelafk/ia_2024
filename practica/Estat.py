@@ -24,7 +24,7 @@ class Estat:
                 succesors.append(nou_estat)
                 #posar paret
                 nou_estat1 = copy.deepcopy(self)
-                nou_estat1.Parets.append((nou_estat1.pos[0] - 1, nou_estat1.pos[1]))
+                nou_estat1.Parets + [(nou_estat1.pos[0] - 1, nou_estat1.pos[1])]
                 nou_estat1.cami_accions + [(Accions.POSAR_PARET,"N")]
                 succesors.append(nou_estat1)
         #West
@@ -36,7 +36,7 @@ class Estat:
                 succesors.append(nou_estat)
                 #posar paret
                 nou_estat1 = copy.deepcopy(self)
-                nou_estat1.Parets.append((nou_estat1.pos[0], nou_estat1.pos[1]-1))
+                nou_estat1.Parets + [(nou_estat1.pos[0], nou_estat1.pos[1]-1)]
                 nou_estat1.cami_accions + [(Accions.POSAR_PARET,"O")]
                 succesors.append(nou_estat1)
             
@@ -49,7 +49,7 @@ class Estat:
                 succesors.append(nou_estat)
                 #posar paret
                 nou_estat1 = copy.deepcopy(self)
-                nou_estat1.Parets.append((nou_estat1.pos[0], nou_estat1.pos[1]+1))
+                nou_estat1.Parets + [(nou_estat1.pos[0], nou_estat1.pos[1]+1)]
                 nou_estat1.cami_accions + [(Accions.POSAR_PARET,"E")]
                 succesors.append(nou_estat1)    
         #South
@@ -61,7 +61,7 @@ class Estat:
                 succesors.append(nou_estat)
                 #posar paret
                 nou_estat1 = copy.deepcopy(self)
-                nou_estat1.Parets.append((nou_estat1.pos[0] + 1, nou_estat1.pos[1]))
+                nou_estat1.Parets + [(nou_estat1.pos[0] + 1, nou_estat1.pos[1])]
                 nou_estat1.cami_accions + [(Accions.POSAR_PARET,"S")]
                 succesors.append(nou_estat1)    
         #segonaaccio BOTAR JUGADOR ALS PUNTS CARDINALS
