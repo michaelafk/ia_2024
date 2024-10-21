@@ -47,12 +47,12 @@ class Viatger(joc.Viatger):
                 taulell = percepcio["TAULELL"],
                 Desti = percepcio["DESTI"],
                 Parets = percepcio["PARETS"],
-                pos = percepcio["AGENTS"],
+                pos = percepcio["AGENTS"]["Agent 1"],
                 cami_accions = None
-            )
-            self.cerca(estat_inicial)
-            
+            )            
+        self.cerca(estat_inicial)
         if self.cami_exit:
             return self.cami_exit.pop(0)
         else:
             return Accions.ESPERAR
+            
