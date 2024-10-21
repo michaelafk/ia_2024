@@ -1,3 +1,6 @@
+import sys
+sys.path.append('C:/Users/kirky/IA_2024')
+
 import logging
 
 from reinforcement.agent import AgentQ
@@ -20,7 +23,14 @@ def main():
         episodes=1000,
         stop_at_convergence=True,
     )
-
+    valores = []
+    for i in range(4):
+        valores.append(agent.Q[(0,0),i])
+    valores.sort()
+    for valor in valores:
+        print(valor)
+    max = valores.pop(-1)
+    print(max)
     game.reset()
     game.set_agent([agent])
     game.comencar()
