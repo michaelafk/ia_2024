@@ -12,6 +12,35 @@ class Estat:
         self.Parets = Parets
         self.pos = pos
         self.cami_accions = cami_accions
+
+    def generar_fills(self):
+        #primeraccio MOURE JUGADOR ALS PUNTS CARDINALS
+        #terceraaccio POSAR PARED
+        #Nord
+        succesors = []
+        if self.pos[0] > 0:
+            if (self.pos[0]-1,self.pos[1]) not in self.Parets and self.taulell[self.pos[0] - 1][self.pos[1]] != "O":
+                nou_estat = copy.deepcopy(self)
+                nou_estat.pos = (nou_estat.pos[0] - 1, nou_estat.pos[1])
+                nou_estat.cami_accions + [(Accions.MOURE,"N")]
+                succesors.append(nou_estat)
+                #posar paret
+                nou_estat1 = copy.deepcopy(self)
+                nou_estat1.Parets + [(nou_estat1.pos[0] - 1, nou_estat1.pos[1])]
+                nou_estat1.cami_accions + [(Accions.POSAR_PARET,"N")]
+                succesors.append(nou_estat1)
+        #West
+        if self.pos[1] > 0:
+            if (self.pos[0],self.pos[1]-1) not in self.Parets and self.taulell[self.pos[0]][self.pos[1] - 1] != "O":
+                nou_estat = copy.deepcopy(self)
+                nou_estat.pos = (nou_estat.pos[0] , nou_estat.pos[1] - 1)
+                nou_estat.cami_accions + [(Accions.MOURE,"O")]
+                succesors.append(nou_estat)
+                #posar paret
+                nou_estat1 = copy.deepcopy(self)
+                nou_estat1.Parets + [(nou_estat1.pos[0], nou_estat1.pos[1]-1)]
+                nou_estat1.cami_accions + [(Accions.POSAR_PARET,"O")]
+                succesors.append(nou_estat1)
     
     def es_meta(self):
         return self.pos == self.Desti
@@ -54,62 +83,57 @@ class Estat:
         if self.pos[1] < len(self.taulell) - 1:
             if (self.pos[0],self.pos[1]+1) not in self.Parets and self.taulell[self.pos[0]][self.pos[1] + 1] != "O":
                 nou_estat = copy.deepcopy(self)
-                #nou_estat.taulell[nou_estat.pos[0]][nou_estat.pos[1] + 1] = "O"
                 nou_estat.pos = (nou_estat.pos[0] , nou_estat.pos[1] + 1)
-                nou_estat.cami_accions.append((Accions.MOURE,"E"))
+                nou_estat.cami_accions + [(Accions.MOURE,"E")]
                 succesors.append(nou_estat)
                 #posar paret
                 nou_estat1 = copy.deepcopy(self)
-                nou_estat1.taulell[nou_estat1.pos[0]][nou_estat1.pos[1]+1] = "O"
-                nou_estat1.Parets.add((nou_estat1.pos[0], nou_estat1.pos[1]+1))
-                nou_estat1.cami_accions.append((Accions.POSAR_PARET,"E"))
+                nou_estat1.Parets + [(nou_estat1.pos[0], nou_estat1.pos[1]+1)]
+                nou_estat1.cami_accions + [(Accions.POSAR_PARET,"E")]
                 succesors.append(nou_estat1)    
         #South
         if self.pos[0] < len(self.taulell) - 1:
             if (self.pos[0]+1,self.pos[1]) not in self.Parets and self.taulell[self.pos[0] + 1][self.pos[1]] != "O":
                 nou_estat = copy.deepcopy(self)
-                #nou_estat.taulell[nou_estat.pos[0] + 1][nou_estat.pos[1]] = "O"
                 nou_estat.pos = (nou_estat.pos[0] + 1, nou_estat.pos[1])
-                nou_estat.cami_accions.append((Accions.MOURE,"S"))
+                nou_estat.cami_accions + [(Accions.MOURE,"S")]
                 succesors.append(nou_estat)
                 #posar paret
                 nou_estat1 = copy.deepcopy(self)
-                nou_estat1.taulell[nou_estat1.pos[0] + 1][nou_estat1.pos[1]] = "O"
-                nou_estat1.Parets.add((nou_estat1.pos[0] + 1, nou_estat1.pos[1]))
-                nou_estat1.cami_accions.append((Accions.POSAR_PARET,"S"))
+                nou_estat1.Parets + [(nou_estat1.pos[0] + 1, nou_estat1.pos[1])]
+                nou_estat1.cami_accions + [(Accions.POSAR_PARET,"S")]
                 succesors.append(nou_estat1)    
         #segonaaccio BOTAR JUGADOR ALS PUNTS CARDINALS
         #Nord
         if self.pos[0] > 1:
             if (self.pos[0]-2,self.pos[1]) not in self.Parets and self.taulell[self.pos[0] - 2][self.pos[1]] != "O":
                 nou_estat = copy.deepcopy(self)
-                #nou_estat.taulell[nou_estat.pos[0] - 2][nou_estat.pos[1]] = "0"
                 nou_estat.pos = (nou_estat.pos[0] - 2, nou_estat.pos[1])
-                nou_estat.cami_accions.append((Accions.BOTAR,"N"))
+                nou_estat.cami_accions + [(Accions.BOTAR,"N")]
                 succesors.append(nou_estat)
         #West
         if self.pos[1] > 1:
             if (self.pos[0],self.pos[1]-2) not in self.Parets and self.taulell[self.pos[0]][self.pos[1] - 2] != "O":
                 nou_estat = copy.deepcopy(self)
-                #nou_estat.taulell[nou_estat.pos[0]][nou_estat.pos[1] - 2] = "O"
                 nou_estat.pos = (nou_estat.pos[0] , nou_estat.pos[1] - 2)
-                nou_estat.cami_accions.append((Accions.BOTAR,"O"))
+                nou_estat.cami_accions + [(Accions.BOTAR,"O")]
                 succesors.append(nou_estat)
             
         #East
         if self.pos[1] + 2 < len(self.taulell):
             if (self.pos[0],self.pos[1]+2) not in self.Parets and self.taulell[self.pos[0]][self.pos[1] + 2] != "O":
                 nou_estat = copy.deepcopy(self)
-                #nou_estat.taulell[nou_estat.pos[0]][nou_estat.pos[1] + 2] = "O"
                 nou_estat.pos = (nou_estat.pos[0] , nou_estat.pos[1] + 2)
-                nou_estat.cami_accions.append((Accions.BOTAR,"E"))
+                nou_estat.cami_accions + [(Accions.BOTAR,"E")]
                 succesors.append(nou_estat)    
         #South
         if self.pos[0] + 2 < len(self.taulell):
             if (self.pos[0]+2,self.pos[1]) not in self.Parets and self.taulell[self.pos[0] + 2][self.pos[1]] != "O":
                 nou_estat = copy.deepcopy(self)
-                #nou_estat.taulell[nou_estat.pos[0] + 2][nou_estat.pos[1]] = "O"
                 nou_estat.pos = (nou_estat.pos[0] + 2, nou_estat.pos[1])
-                nou_estat.cami_accions.append((Accions.BOTAR,"S"))
+                nou_estat.cami_accions + [(Accions.BOTAR,"S")]
                 succesors.append(nou_estat)       
-        return succesors
+        return succesors  
+           
+    def es_meta(self):
+        return self.pos == self.Desti
